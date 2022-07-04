@@ -36,10 +36,8 @@ const createListView = (todos) => {
     todoId.innerHTML = index + 1; //コールバック関数の第二引数でインデックスを取得させinnerHTMLで記述
     todoComment.innerHTML = task.comment; //コールバック関数の第一引数(task)からtodosの各値を取得させinnerHTMLで記述
     todoStatus.innerHTML = task.status;
-    deleteButton.innerHTML = '削除';
-    todoDelete.appendChild(deleteButton);
-
-    deleteButton.setAttribute('id', 'deleteBtn');
+    // deleteButton.innerHTML = '削除';
+    todoDelete.appendChild(cleateDeleteButton(todos.id));
 
     //todoItem内に各要素を差し込む
     todoItem.appendChild(todoId);
@@ -50,11 +48,15 @@ const createListView = (todos) => {
     //<tbody></tbody>内にtodoItemを差し込む
     todoLists.appendChild(todoItem);
   });
-  // 削除ボタンが押されたらタスクを消す処理を実装
-  const deleteTask = document.getElementById('deleteBtn');
-  deleteTask.addEventListener('click', () => {
-    todos.splice(todos.id, 1);
+};
+// 削除ボタンが押されたらタスクを消す処理を実装
+const cleateDeleteButton = (index) => {
+  const deleteButton = document.createElement('button');
+  deleteButton.innerHTML = '削除';
+  deleteButton.addEventListener('click', () => {
+    todos.splice(index, 1);
 
     createListView(todos);
   });
+  // return deleteButton;
 };
