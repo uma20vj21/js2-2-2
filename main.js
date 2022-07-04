@@ -36,8 +36,7 @@ const createListView = (todos) => {
     todoId.innerHTML = index + 1; //コールバック関数の第二引数でインデックスを取得させinnerHTMLで記述
     todoComment.innerHTML = task.comment; //コールバック関数の第一引数(task)からtodosの各値を取得させinnerHTMLで記述
     todoStatus.innerHTML = task.status;
-    // deleteButton.innerHTML = '削除';
-    todoDelete.appendChild(cleateDeleteButton(todos.id));
+    todoDelete.appendChild(cleateDeleteButton(todos.id)); //createDeleteButtonに配列のidを渡してあげる
 
     //todoItem内に各要素を差し込む
     todoItem.appendChild(todoId);
@@ -58,5 +57,6 @@ const cleateDeleteButton = (index) => {
 
     createListView(todos);
   });
-  // return deleteButton;
+  //クリック発火で使われたdeleteButtonを返してあげないと、appendChild内で関数を使って削除ボタンを作った際にnullが返されエラーになる
+  return deleteButton;
 };
